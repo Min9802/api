@@ -1,8 +1,7 @@
 class MemberController {
-
     //
-    login(req, res){
+    login(req, res) {
         console.log(res.body);
     }
 }
-module.exports = new MemberController;
+module.exports = new MemberController();

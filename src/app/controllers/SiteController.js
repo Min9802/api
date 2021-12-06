@@ -1,12 +1,11 @@
 class SiteController {
-
     //[GET] /home
-    index(req, res){
+    index(req, res) {
         res.render('home');
     }
     //[GET] /about
-    about(req, res){
+    about(req, res) {
         res.render('about');
     }
 }
-module.exports = new SiteController;
+module.exports = new SiteController();
