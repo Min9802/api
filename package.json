@@ -26,18 +26,18 @@
   },
   "homepage": "https://github.com/Min9802/appcenter#readme",
   "lint-staged": {
-    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --write"
   },
   "husky": {
     "hooks": {
       "pre-commit": "npm run beauty"
     }
-
   },
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
     "handlebars": "^4.7.7",
+    "mongoose": "^6.0.14",
     "node-sass": "^7.0.0",
     "path": "^0.12.7"
   },

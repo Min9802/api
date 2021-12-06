@@ -3,11 +3,11 @@ const memberRoute = require('./member.route');
 function route(app) {
     //site route
 
-    app.use('/about', siteRoute);
+    app.get('/about', siteRoute);
 
     //member route
-    app.use('/login', memberRoute);
+    app.post('/login', memberRoute);
 
-    app.use('/', siteRoute);
+    app.get('/', siteRoute);
 }
 module.exports = route;
