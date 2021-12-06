@@ -4,7 +4,7 @@
   "description": "App Center Min",
   "main": "src/index.js",
   "scripts": {
-    "beauty": "prettier --single-quote --trailing-comma all --tab-width 4 --write src/**/*.{js,json,scss}",
+    "beauty": "lint-staged",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ -o src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25,6 +25,15 @@
     "url": "https://github.com/Min9802/appcenter/issues"
   },
   "homepage": "https://github.com/Min9802/appcenter#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run beauty"
+    }
+
+  },
   "dependencies": {
     "express": "^4.17.1",
     "express-handlebars": "^6.0.2",
