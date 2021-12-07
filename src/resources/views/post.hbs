@@ -1,0 +1,15 @@
+<div class="col-md-12">
+  <div class="row">
+    {{#each posts }}
+    <div class="col-sm-6 col-lg-4">
+      <div class="card card-item">
+        <div class="card-body">
+          <h5 class="card-title"> {{this.title}} </h5>
+          <p class="card-text">{{this.name}}</p>
+          <p class="card-text">{{{ this.content }}}</p>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

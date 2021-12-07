@@ -4,6 +4,7 @@ function route(app) {
     //site route
 
     app.get('/about', siteRoute);
+    app.get('/post', siteRoute);
 
     //member route
     app.post('/login', memberRoute);

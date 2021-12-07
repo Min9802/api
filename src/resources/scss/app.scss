@@ -6,3 +6,13 @@
     height: 40px;
     margin: 10px;
 }
+.card-item {
+    margin: 10px;
+    border-radius: 10px;
+    border-color: #139147;
+    background-image: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);
+    padding: 10px;
+}
+.card-item video{
+    width: 100%;
+}
