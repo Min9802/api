@@ -1,22 +1,25 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.ObjectId;
 
-const Admin = new Schema({
-    username: { 
+const AdminSchema = new Schema({
+    username: {
         type: String,
-        minLength:6 ,
-        required: 'UserName is required',
+        unique: true,
+        required: true,
+        trim: true
     },
-    name: { 
+    name: {
         type: String,
-         minLength:6,
-         required: 'Name is required',
+        unique: true,
+        required: true,
+        trim: true
     },
-    password: { 
+    password: {
         type: String,
-         minLength:6,
-         required: 'Password is required',
+        required: true,
+        trim: true
     },
     email: {
         type: String,
@@ -26,14 +29,7 @@ const Admin = new Schema({
         required: 'Email address is required',
         match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/, 'Please fill a valid email address']
     },
-    createdAt: { 
-        type: Date, 
-        default: Date.now
-    },
-    date: { 
-        type: Date, 
-        default: Date.now 
-    },
-});
+},{timestamp: true});
 
-module.exports = mongoose.model('Admin', Admin);
+var Admin = mongoose.model('Admin', AdminSchema);
+module.exports = Admin

@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const session = require('express-session')
 
 const app = express();
 const port = 3000;
@@ -18,12 +19,19 @@ app.use(
     }),
 );
 app.use(express.json());
-
+//session
+//use sessions for tracking logins
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false
+}));
+  
 //Loads the handlebars module
 const handlebars = require('express-handlebars');
 
 //Http logger
-app.use(morgan('combined'));
+// app.use(morgan('combined'));
 
 //Template
 //Sets our app to use the handlebars engine

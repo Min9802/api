@@ -5,21 +5,35 @@ const { multipleMongooseToObject } = require('../../util/mongoose');
 class SiteController {
     //[GET] /home
     index(req, res, next) {
-        Admin.find({})
-        .then (admins => res.json(admins))
-        .catch (next);
-        // res.render('home');
+        Menu.find({})
+        .then ( menus => { 
+            res.render('home',{
+                menus: multipleMongooseToObject(menus)
+            });
+        })
+        .catch (next);  
     }
     //[GET] /about
-    about(req, res) {
-        res.render('about');
+    about(req, res,next) {
+        Menu.find({})
+        .then ( menus => { 
+            res.render('about',{
+                menus: multipleMongooseToObject(menus)
+            });
+        })
+        .catch (next);  
     }
     post(req, res, next) {
-        Post.find({})
-        .then (posts => {
-            res.render('post', {
-                posts: multipleMongooseToObject(posts)
-            });
+        Menu.find({})
+        .then ( menus => { 
+            Post.find({})
+            .then (posts => {
+                res.render('post', {
+                    menus: multipleMongooseToObject(menus),
+                    posts: multipleMongooseToObject(posts)
+                });
+            })
+            .catch (next);
         })
         .catch (next);
     }

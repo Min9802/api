@@ -1,14 +1,16 @@
 const siteRoute = require('./site.route');
-const memberRoute = require('./member.route');
+const adminRoute = require('./admin.route');
 function route(app) {
+
+    //admin route
+    app.use('/admin', adminRoute);
+
     //site route
+    app.use('/about', siteRoute);
+    app.use('/post', siteRoute);
+    app.use('/home', siteRoute);
 
-    app.get('/about', siteRoute);
-    app.get('/post', siteRoute);
 
-    //member route
-    app.post('/login', memberRoute);
-
-    app.get('/', siteRoute);
+    app.use('/', siteRoute);
 }
 module.exports = route;
