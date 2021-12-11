@@ -5,56 +5,55 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const {
-  multipleMongooseToObject
-} = require('../../util/mongoose');
-const {
-  RSA_X931_PADDING
-} = require('constants');
+const { multipleMongooseToObject } = require('../../util/mongoose');
+const { RSA_X931_PADDING } = require('constants');
 
 class AdminController {
   //
 
   index(req, res, next) {
-    if (req.body.token || req.session.admin) {
-      res.render(path.join('admins', 'home'), {
-        layout: 'backend',
-      });
-    } else {
-      return res.redirect('admin/login');
-    }
+    // if (req.body.token || req.session.admin) {
+    //   res.render(path.join('admins', 'home'), {
+    //     layout: 'admin',
+    //   });
+    // } else {
+    //   return res.redirect('admin/login');
+    // }
+    res.render(path.join('admins', 'home'), {
+      layout: 'admin',
+    });
   }
   show(req, res, next) {
     switch (req.params.slug) {
       case 'home':
         router.get('home', function (req, res, next) {
           res.render(path.join('admins', 'home'), {
-            layout: 'backend',
+            layout: 'admin',
           });
         });
         break;
       case 'login':
         if (req.session && req.session.admin) {
           return res.json({
-            err: 'You must be logout before re-login.'
+            err: 'You must be logout before re-login.',
           });
         } else {
           res.render(path.join('admins', 'login'), {
-            layout: 'backend',
+            layout: 'admin',
           });
         }
         break;
-      // case 'logout':
-      //   AdminController.logout
-      // break;
+      case 'logout':
+        router.get('logout', AdminController.logout);
+        break;
     }
   }
   auth(req, res, next) {
     var username = req.body.username;
     var password = req.body.password;
     Admin.findOne({
-        username: username
-      })
+      username: username,
+    })
       .then((admin) => {
         if (admin) {
           bcrypt.compare(password, admin.password, function (err, result) {
@@ -64,14 +63,16 @@ class AdminController {
               });
             }
             if (result) {
-              let token = jwt.sign({
-                  username: admin.username
+              let token = jwt.sign(
+                {
+                  username: admin.username,
                 },
-                'verySecretValue', {
-                  expiresIn: '1h'
+                'verySecretValue',
+                {
+                  expiresIn: '1h',
                 },
               );
-              req.session.admin = admin,
+              (req.session.admin = admin),
                 res.json({
                   message: 'Login Successfully !',
                   token,
