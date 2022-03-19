@@ -20,7 +20,7 @@ app.use(
         saveUninitialized: false,
     }),
 );
-viewEngine(app);
+// viewEngine(app);
 initWebRouters(app);
 
 const PORT = process.env.PORT || 3000;
