@@ -23,6 +23,9 @@ module.exports = {
             token: {
                 type: Sequelize.STRING
             },
+            refreshToken: {
+                type: Sequelize.STRING
+            },
             role: {
                 type: Sequelize.INTEGER
             },

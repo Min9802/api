@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const viewEngine = require('./config/viewEngine');
 const initWebRouters = require('./routes/web');
 const session = require('express-session');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -12,10 +13,11 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 //use sessions for tracking logins
 app.use(
     session({
-        secret: 'user',
+        secret: 'secret',
         resave: true,
         saveUninitialized: false,
     }),

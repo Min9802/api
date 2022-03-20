@@ -1,6 +1,6 @@
-let express = require('express');
-let router = express.Router();
-let ApiRoute = require('./apiRoute');
+const express = require('express');
+const router = express.Router();
+const ApiRoute = require('./apiRoute');
 
 
 let initWebRouters = (app) => {

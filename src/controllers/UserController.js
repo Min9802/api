@@ -1,6 +1,6 @@
-let handleLogin = (req, res) => {
+let home = () => {
 
 }
 module.exports = {
-    handleLogin: handleLogin
+    home: home
 }
